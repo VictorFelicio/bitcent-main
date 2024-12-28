@@ -1,5 +1,7 @@
 import { Wrapper } from '../common/Wrapper';
 import Slogan from './Slogan';
+import principal3 from '../../../../public/principal-3.jpg';
+import { ResponsiveImage } from '../common/ResponsiveImage';
 
 export function Highlight() {
     return (
@@ -9,11 +11,15 @@ export function Highlight() {
         >
             <div
                 className={` 
-                flex items-center
+                flex items-center justify-around
                 h-[500px]
                 `}
             >
                 <Slogan />
+                <ResponsiveImage
+                    image={principal3}
+                    className="rotate-3 hidden md:inline"
+                />
             </div>
         </Wrapper>
     );
