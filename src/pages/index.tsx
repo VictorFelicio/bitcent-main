@@ -1,7 +1,9 @@
+import { Page } from '@/components/template/Page';
+
 export default function Home() {
     return (
         <div>
-            <h1>Home</h1>
+            <Page>Bitcent</Page>
         </div>
     );
 }
