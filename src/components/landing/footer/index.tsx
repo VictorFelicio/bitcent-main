@@ -1,7 +1,9 @@
+import { Wrapper } from '../common/Wrapper';
+
 export function Footer() {
     return (
-        <div className="flex flex-col items-center justify-center w-full h-full">
+        <Wrapper>
             <h1 className="text-4xl font-bold text-white">Footer</h1>
-        </div>
+        </Wrapper>
     );
 }

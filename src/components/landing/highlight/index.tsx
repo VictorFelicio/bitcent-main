@@ -1,7 +1,20 @@
+import { Wrapper } from '../common/Wrapper';
+import Slogan from './Slogan';
+
 export function Highlight() {
     return (
-        <div className="flex flex-col items-center justify-center w-full h-full">
-            <h1 className="text-4xl font-bold text-white">Highlight</h1>
-        </div>
+        <Wrapper
+            id="home"
+            className="pt-20"
+        >
+            <div
+                className={` 
+                flex items-center
+                h-[500px]
+                `}
+            >
+                <Slogan />
+            </div>
+        </Wrapper>
     );
 }

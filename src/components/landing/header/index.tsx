@@ -1,7 +1,14 @@
+import { Logo } from '../common/Logo';
+import { Wrapper } from '../common/Wrapper';
+import { Menu } from './Menu';
+
 export function Header() {
     return (
-        <div className="flex flex-col items-center justify-center w-full h-full">
-            <h1 className="text-4xl font-bold text-white">Header</h1>
-        </div>
+        <Wrapper className="fixed z-10">
+            <div className="flex items-center justify-between h-20">
+                <Logo />
+                <Menu />
+            </div>
+        </Wrapper>
     );
 }
