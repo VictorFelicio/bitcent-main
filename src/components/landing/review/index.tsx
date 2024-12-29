@@ -4,7 +4,7 @@ import { FeedbackUser } from "./FeedbackUser";
 export function Review() {
 	return (
 		<Wrapper
-			id="review"
+			id="reviews"
 			className={`
             bg-gradient-to-r from-black via-zinc-900 to-black
             py-10 sm:py-20 scroll-smooth
