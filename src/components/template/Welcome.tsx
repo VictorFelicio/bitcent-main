@@ -1,7 +1,7 @@
+import { mockUser } from "@/data/constants/mockUser";
+
 export function Welcome() {
-	const user = {
-		name: "João Felício",
-	};
+	const user = mockUser;
 
 	return (
 		<div className={`text-3xl font-black`}>
