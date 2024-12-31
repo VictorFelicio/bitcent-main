@@ -1,6 +1,7 @@
 import { mockUser } from "@/data/constants/mockUser";
 import { Avatar, Menu } from "@mantine/core";
-import { IconArrowsRightLeft } from "@tabler/icons-react";
+import { IconArrowsRightLeft, IconUser } from "@tabler/icons-react";
+import Link from "next/link";
 
 export function MenuUser() {
 	const user = mockUser;
@@ -19,17 +20,20 @@ export function MenuUser() {
 					<Avatar
 						size={40}
 						radius="xl"
-						src={
-							user?.imageUrl ??
-							"https://source.unsplash.com/random/100x100/?abstract"
-						}
+						src={user?.imageUrl ?? "https://picsum.photos/100"}
 					/>
 				</div>
 			</Menu.Target>
 			<Menu.Dropdown>
-				<Menu.Item icon={<IconArrowsRightLeft size={14} />}>
-					Finanças
-				</Menu.Item>
+				<Menu.Label>Usuário</Menu.Label>
+				<Link href="/">
+					<Menu.Item icon={<IconArrowsRightLeft size={14} />}>
+						Finanças
+					</Menu.Item>
+				</Link>
+				<Link href="/user">
+					<Menu.Item icon={<IconUser size={14} />}>Usuario</Menu.Item>
+				</Link>
 			</Menu.Dropdown>
 		</Menu>
 	);
