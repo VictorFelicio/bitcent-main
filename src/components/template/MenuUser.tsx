@@ -1,6 +1,6 @@
 import { mockUser } from "@/data/constants/mockUser";
 import { Avatar, Menu } from "@mantine/core";
-import { IconArrowsRightLeft, IconUser } from "@tabler/icons-react";
+import { IconArrowsRightLeft, IconLogout, IconUser } from "@tabler/icons-react";
 import Link from "next/link";
 
 export function MenuUser() {
@@ -32,8 +32,17 @@ export function MenuUser() {
 					</Menu.Item>
 				</Link>
 				<Link href="/user">
-					<Menu.Item icon={<IconUser size={14} />}>Usuario</Menu.Item>
+					<Menu.Item icon={<IconUser size={14} />}>
+						Meus Dados
+					</Menu.Item>
 				</Link>
+				<Menu.Divider />
+				<Menu.Item
+					color="red"
+					icon={<IconLogout size={14} />}
+					onClick={() => console.log("Sair do sistema")}>
+					Sair do Sistema
+				</Menu.Item>
 			</Menu.Dropdown>
 		</Menu>
 	);
