@@ -1,7 +1,7 @@
-import { mockTransactions } from "@/data/constants/mockTransaction";
-import { Header } from "../template/Header";
 import { Page } from "../template/Page";
-import { ListTransactions } from "./ListTransactions";
+import { Header } from "../template/Header";
+import { ListTransactions } from "./components/ListTransactions";
+import { mockTransactions } from "@/data/constants/mockTransaction";
 
 export function Finances() {
 	return (
