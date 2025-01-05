@@ -1,4 +1,4 @@
-import { TransactionEnum } from "../core/finances/enum/TransactionType";
+import { TransactionEnum } from "../core/finances/enum/TransactionEnum";
 
 export interface Transaction {
 	id?: string;

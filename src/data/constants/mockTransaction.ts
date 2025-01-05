@@ -1,6 +1,6 @@
 import { Id } from "@/logic/core/common/Id";
 import { Transaction } from "@/logic/interface/Transaction";
-import { TransactionEnum } from "@/logic/core/finances/enum/TransactionType";
+import { TransactionEnum } from "@/logic/core/finances/enum/TransactionEnum";
 
 export const mockTransactions: Transaction[] = [
 	{
