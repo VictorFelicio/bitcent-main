@@ -9,12 +9,16 @@ import { Transaction } from "@/logic/interface/Transaction";
 
 export function Finances() {
 	const [transactions, setTransactions] = useState<Transaction[]>(mockTransactions);
+	const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
 	return (
 		<Page>
 			<Header />
 			<Content className="gap-5">
-				<ListTransactions transactions={transactions} />
-				<FormTransaction transaction={transactions[0]} />
+				<ListTransactions
+					transactions={transactions}
+					selectedTransaction={setSelectedTransaction}
+				/>
+				{selectedTransaction && <FormTransaction transaction={selectedTransaction} />}
 			</Content>
 		</Page>
 	);

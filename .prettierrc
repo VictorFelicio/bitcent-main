@@ -10,7 +10,7 @@
 	"quoteProps": "consistent",
 	"trailingComma": "es5",
 	"singleAttributePerLine": true,
-	"printWidth": 90,
+	"printWidth": 95,
 	"tabWidth": 4,
 	"useTabs": true,
 	"embeddedLanguageFormatting": "auto"

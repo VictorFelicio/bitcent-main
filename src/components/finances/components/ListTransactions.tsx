@@ -3,6 +3,7 @@ import { ListRow } from "./ListRow";
 
 interface ListTransactionsProps {
 	transactions: Transaction[];
+	selectedTransaction?: (transaction: Transaction) => void;
 }
 
 export function ListTransactions(props: ListTransactionsProps) {
@@ -13,6 +14,7 @@ export function ListTransactions(props: ListTransactionsProps) {
 					key={transaction.id}
 					transaction={transaction}
 					index={index}
+					selectedTransaction={props.selectedTransaction}
 				/>
 			))}
 		</div>
