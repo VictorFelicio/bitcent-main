@@ -10,15 +10,28 @@ import { Transaction } from "@/logic/interface/Transaction";
 export function Finances() {
 	const [transactions, setTransactions] = useState<Transaction[]>(mockTransactions);
 	const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
+
+	function deleteTransaction(transaction: Transaction) {
+		const newTransactions = transactions.filter((t) => t.id !== transaction.id);
+		setTransactions(newTransactions);
+		setSelectedTransaction(null);
+	}
 	return (
 		<Page>
 			<Header />
 			<Content className="gap-5">
-				<ListTransactions
-					transactions={transactions}
-					selectedTransaction={setSelectedTransaction}
-				/>
-				{selectedTransaction && <FormTransaction transaction={selectedTransaction} />}
+				{selectedTransaction ? (
+					<FormTransaction
+						transaction={selectedTransaction}
+						cancelTransaction={() => setSelectedTransaction(null)}
+						deleteTransaction={deleteTransaction}
+					/>
+				) : (
+					<ListTransactions
+						transactions={transactions}
+						selectedTransaction={setSelectedTransaction}
+					/>
+				)}
 			</Content>
 		</Page>
 	);

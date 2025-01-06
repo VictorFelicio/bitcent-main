@@ -7,6 +7,8 @@ import { TransactionEnum } from "@/logic/core/finances/enum/TransactionEnum";
 
 interface FormTransactionProps {
 	transaction: Transaction;
+	cancelTransaction?: () => void;
+	deleteTransaction?: (transaction: Transaction) => void;
 }
 
 export function FormTransaction(props: FormTransactionProps) {
@@ -50,14 +52,16 @@ export function FormTransaction(props: FormTransactionProps) {
 					</Button>
 					<Button
 						className="bg-zinc-500"
-						color="gray">
+						color="gray"
+						onClick={props.cancelTransaction}>
 						Cancelar
 					</Button>
 				</div>
 				{props.transaction.id && (
 					<Button
 						className="bg-red-500"
-						color="red">
+						color="red"
+						onClick={() => props.deleteTransaction?.(props.transaction)}>
 						Excluir
 					</Button>
 				)}
