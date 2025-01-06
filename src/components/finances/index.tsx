@@ -6,6 +6,7 @@ import { FormTransaction } from "./components/FormTransaction";
 import Content from "../template/Content";
 import { useState } from "react";
 import { Transaction } from "@/logic/interface/Transaction";
+import { NotFoundContent } from "../template/NotFoundContent";
 
 export function Finances() {
 	const [transactions, setTransactions] = useState<Transaction[]>(mockTransactions);
@@ -26,11 +27,13 @@ export function Finances() {
 						cancelTransaction={() => setSelectedTransaction(null)}
 						deleteTransaction={deleteTransaction}
 					/>
-				) : (
+				) : transactions.length > 0 ? (
 					<ListTransactions
 						transactions={transactions}
 						selectedTransaction={setSelectedTransaction}
 					/>
+				) : (
+					<NotFoundContent>Nenhuma transação encontrada</NotFoundContent>
 				)}
 			</Content>
 		</Page>
