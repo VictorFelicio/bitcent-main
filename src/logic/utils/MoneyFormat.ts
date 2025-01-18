@@ -8,4 +8,10 @@ export class MoneyFormat {
 			currency: this._currency,
 		});
 	}
+
+	static unformat(value: string): number {
+		const nums = value.replace(/[^0-9]+/g, "");
+		const i = nums.length - 2;
+		return Number(`${nums.substring(0, i)}.${nums.substring(i)}`);
+	}
 }

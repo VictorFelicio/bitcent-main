@@ -7,3 +7,10 @@ export interface Transaction {
 	date: Date;
 	type: TransactionEnum;
 }
+
+export const emptyTransaction: Transaction = {
+	description: "",
+	value: 0,
+	date: new Date(),
+	type: TransactionEnum.SPENDING,
+};

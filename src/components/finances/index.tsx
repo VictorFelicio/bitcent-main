@@ -5,8 +5,11 @@ import { mockTransactions } from "@/data/constants/mockTransaction";
 import { FormTransaction } from "./components/FormTransaction";
 import Content from "../template/Content";
 import { useState } from "react";
-import { Transaction } from "@/logic/interface/Transaction";
+import { emptyTransaction, Transaction } from "@/logic/interface/Transaction";
 import { NotFoundContent } from "../template/NotFoundContent";
+import { Id } from "@/logic/core/common/Id";
+import { Button } from "@mantine/core";
+import { IconPlus } from "@tabler/icons-react";
 
 export function Finances() {
 	const [transactions, setTransactions] = useState<Transaction[]>(mockTransactions);
@@ -17,15 +20,35 @@ export function Finances() {
 		setTransactions(newTransactions);
 		setSelectedTransaction(null);
 	}
+
+	function saveTransaction(transaction: Transaction) {
+		const olderTransactions = transactions.filter((t) => {
+			return t.id != transaction.id;
+		});
+
+		setTransactions([
+			...olderTransactions,
+			{ ...transaction, id: transaction.id ?? Id.genereateID() },
+		]);
+		setSelectedTransaction(null);
+	}
+
 	return (
 		<Page>
 			<Header />
 			<Content className="gap-5">
+				<Button
+					className="bg-blue-500"
+					leftIcon={<IconPlus />}
+					onClick={() => setSelectedTransaction(emptyTransaction)}>
+					Nova Transação
+				</Button>
 				{selectedTransaction ? (
 					<FormTransaction
 						transaction={selectedTransaction}
 						cancelTransaction={() => setSelectedTransaction(null)}
 						deleteTransaction={deleteTransaction}
+						saveTransaction={saveTransaction}
 					/>
 				) : transactions.length > 0 ? (
 					<ListTransactions
