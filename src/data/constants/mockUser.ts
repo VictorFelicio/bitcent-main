@@ -5,6 +5,6 @@ export const mockUser: User = {
 	id: Id.genereateID(),
 	name: "Felicio Soares",
 	email: "felicio.soares@bitcent.com.br",
-	cpf: "",
+	cpf: "12345678900",
 	phone: "19940028922",
 };

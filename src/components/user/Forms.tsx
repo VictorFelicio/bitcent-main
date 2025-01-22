@@ -5,6 +5,7 @@ import { TextInput } from "@mantine/core";
 import { User } from "@/logic/interface/Usuario";
 import { Text } from "@/logic/utils/validations/Text";
 import { CPF } from "@/logic/utils/validations/CPF";
+import { Phone } from "@/logic/utils/validations/Phone";
 
 export function Forms() {
 	const { data, handleChangeData } = useFormData<User>(mockUser);
@@ -28,7 +29,7 @@ export function Forms() {
 				save={() => {}}
 				canSave={true}>
 				<TextInput
-					value={CPF.format(data.cpf)}
+					value={CPF.formatExibition(data.cpf)}
 					onChange={handleChangeData("cpf", CPF.extractDigits)}
 				/>
 			</MiniForm>
@@ -39,8 +40,8 @@ export function Forms() {
 				save={() => {}}
 				canSave={true}>
 				<TextInput
-					value={data.phone}
-					onChange={handleChangeData("phone")}
+					value={Phone.formatExibition(data.phone)}
+					onChange={handleChangeData("phone", Phone.extractNumbers)}
 				/>
 			</MiniForm>
 		</div>

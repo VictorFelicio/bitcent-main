@@ -1,9 +1,9 @@
-export class CPF {
-	private static _pattern = "???.???.???-??";
+export class Phone {
+	private static _pattern = "(??) ?????-????";
 
 	static formatExibition(value: string): string {
-		const digits = CPF.extractDigits(value).split("");
-		return digits
+		const numbers = Phone.extractNumbers(value).split("");
+		return numbers
 			.reduce((pattern: string, digit: string) => {
 				return pattern.replace("?", digit);
 			}, this._pattern)
@@ -11,7 +11,7 @@ export class CPF {
 			.replace(/[-.]$/, "");
 	}
 
-	static extractDigits(value: string): string {
+	static extractNumbers(value: string): string {
 		return value.replace(/[^0-9]+/g, "");
 	}
 }
