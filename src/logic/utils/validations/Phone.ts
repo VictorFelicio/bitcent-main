@@ -8,7 +8,8 @@ export class Phone {
 				return pattern.replace("?", digit);
 			}, this._pattern)
 			.split("?")[0]
-			.replace(/[-.]$/, "");
+			.trim()
+			.replace(/[()-]$/, "");
 	}
 
 	static extractNumbers(value: string): string {
