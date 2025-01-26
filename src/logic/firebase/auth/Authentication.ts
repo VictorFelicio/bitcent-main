@@ -1,10 +1,14 @@
-import { Auth, getAuth, onIdTokenChanged, signInWithPopup, signOut } from "firebase/auth";
+import {
+	Auth,
+	getAuth,
+	onIdTokenChanged,
+	signInWithPopup,
+	signOut,
+	GoogleAuthProvider,
+} from "firebase/auth";
 import { app } from "../config/app";
 import { User } from "@/logic/interface/Usuario";
-import {
-	GoogleAuthProvider,
-	User as UserFirebaseInterface,
-} from "firebase/auth/web-extension";
+import { User as UserFirebaseInterface } from "firebase/auth/web-extension";
 
 export type MonitorinUser = (user: User | null) => void;
 export type CancelMonitorinUser = () => void;
@@ -17,6 +21,8 @@ export class Authtentication {
 
 	async loginGoogle(): Promise<User | null> {
 		const resp = await signInWithPopup(this._auth, new GoogleAuthProvider());
+		console.log(resp);
+
 		return this.convertToUser(resp.user);
 	}
 
@@ -32,7 +38,7 @@ export class Authtentication {
 	}
 
 	private convertToUser(userFirabase: UserFirebaseInterface | null): User | null {
-		if (userFirabase?.email) return null;
+		if (!userFirabase?.email) return null;
 
 		const nameFirebase = userFirabase.email!.split("@")[0];
 
@@ -41,6 +47,8 @@ export class Authtentication {
 			name: userFirabase.displayName ?? nameFirebase,
 			email: userFirabase.email,
 			imageUrl: userFirabase.photoURL,
+			cpf: "12345678900",
+			phone: "19940028922",
 		};
 	}
 }

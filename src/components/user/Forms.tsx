@@ -1,14 +1,16 @@
 import { useFormData } from "@/data/hooks/useFormData";
 import { MiniForm } from "../template/MiniForm";
-import { mockUser } from "@/data/constants/mockUser";
+//import { mockUser } from "@/data/constants/mockUser";
 import { TextInput } from "@mantine/core";
 import { User } from "@/logic/interface/Usuario";
 import { Text } from "@/logic/utils/validations/Text";
 import { CPF } from "@/logic/utils/validations/CPF";
 import { Phone } from "@/logic/utils/validations/Phone";
+import { useAuth } from "@/data/hooks/useAuth";
 
 export function Forms() {
-	const { data, handleChangeData } = useFormData<User>(mockUser);
+	const { user } = useAuth();
+	const { data, handleChangeData } = useFormData<User>(user);
 	return (
 		<div className="flex flex-col gap-5">
 			<MiniForm
