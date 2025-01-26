@@ -5,8 +5,7 @@ export function Loading() {
 	return (
 		<Page
 			external
-			className="flex justify-center items-center gap-3">
-			<span>Carregando</span>
+			className="flex justify-center items-center">
 			<Loader
 				color="indigo"
 				size="xl"
