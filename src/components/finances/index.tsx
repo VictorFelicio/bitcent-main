@@ -10,6 +10,7 @@ import { NotFoundContent } from "../template/NotFoundContent";
 import { Id } from "@/logic/core/common/Id";
 import { Button } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
+import { ServicesTransaction } from "@/logic/core/finances/services/ServicesTransaction";
 
 export function Finances() {
 	const [transactions, setTransactions] = useState<Transaction[]>(mockTransactions);
@@ -30,6 +31,9 @@ export function Finances() {
 			...olderTransactions,
 			{ ...transaction, id: transaction.id ?? Id.genereateID() },
 		]);
+
+		new ServicesTransaction().save(selectedTransaction);
+
 		setSelectedTransaction(null);
 	}
 
