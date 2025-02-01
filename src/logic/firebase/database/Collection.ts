@@ -29,10 +29,10 @@ export class Collection {
 
 		if (!entity) return entity;
 
-		return Object.keys(entity).reduce((obj: any, attrb: string) => {
-			const value: any = entity[attrb];
-			return { ...obj, [attrb]: value.toDate?.() ?? value };
-		});
+		return Object.keys(entity).reduce((obj: any, attr: string) => {
+			const value: any = entity[attr];
+			return { ...obj, [attr]: value.toDate?.() ?? value };
+		}, {});
 	}
 
 	async save(path: string, entity: any, id?: string): Promise<any> {

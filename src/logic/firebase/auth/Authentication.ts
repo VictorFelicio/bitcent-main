@@ -21,7 +21,6 @@ export class Authtentication {
 
 	async loginGoogle(): Promise<User | null> {
 		const resp = await signInWithPopup(this._auth, new GoogleAuthProvider());
-		console.log(resp);
 
 		return this.convertToUser(resp.user);
 	}
