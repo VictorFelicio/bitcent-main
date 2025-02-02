@@ -12,7 +12,7 @@ import { User as UserFirebaseInterface } from "firebase/auth/web-extension";
 
 export type MonitorinUser = (user: User | null) => void;
 export type CancelMonitorinUser = () => void;
-export class Authtentication {
+export class Authentication {
 	private _auth: Auth;
 
 	constructor() {
@@ -20,7 +20,9 @@ export class Authtentication {
 	}
 
 	async loginGoogle(): Promise<User | null> {
-		const resp = await signInWithPopup(this._auth, new GoogleAuthProvider());
+		const provider = new GoogleAuthProvider();
+		provider.setCustomParameters({ prompt: "select_account" });
+		const resp = await signInWithPopup(this._auth, provider);
 
 		return this.convertToUser(resp.user);
 	}

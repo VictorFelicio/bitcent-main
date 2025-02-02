@@ -13,4 +13,8 @@ export class ServicesTransaction {
 		const path = `finances/${user.email}/transactions`;
 		return this._collection.consult(path, "date", "asc");
 	}
+	async delete(transaction: Transaction, user: User) {
+		const path = `finances/${user.email}/transactions`;
+		return this._collection.delete(path, transaction.id);
+	}
 }

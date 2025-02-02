@@ -1,4 +1,4 @@
-import { Authtentication } from "@/logic/firebase/auth/Authentication";
+import { service } from "@/logic/core";
 import { User } from "@/logic/interface/Usuario";
 import { createContext, ReactNode, useEffect, useState } from "react";
 
@@ -7,22 +7,23 @@ interface AuthContextProps {
 	user: User | null;
 	loginGoogle: () => Promise<User | null>;
 	logout: () => void;
+	updateUser: (user: User) => void;
 }
 
 export const AuthContext = createContext<AuthContextProps>({
 	isLoading: true,
 	user: null,
 	loginGoogle: async () => null,
-	logout: () => {},
+	logout: async () => {},
+	updateUser: async () => {},
 });
 
 export function AuthContextProvider({ children }: { children: ReactNode }) {
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const [user, setUser] = useState<User | null>(null);
-	const authentication = new Authtentication();
 
 	useEffect(() => {
-		const cancel = authentication.monitoring((user) => {
+		const cancel = service.user.monitoringAuth((user) => {
 			setUser(user);
 			setIsLoading(false);
 		});
@@ -31,16 +32,23 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
 	}, []);
 
 	async function loginGoogle() {
-		const user = await authentication.loginGoogle();
+		const user = await service.user.loginGoogle();
 		setUser(user);
 		return user;
 	}
 
 	async function logout() {
-		await authentication.logout();
+		await service.user.logout();
 		setUser(null);
 	}
 
+	async function updateUser(newUser: User) {
+		if (user && user.email !== newUser.email) return logout();
+		if (user && newUser && user.email === newUser.email) {
+			await service.user.save(newUser);
+			setUser(newUser);
+		}
+	}
 	return (
 		<AuthContext.Provider
 			value={{
@@ -48,6 +56,7 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
 				user,
 				loginGoogle,
 				logout,
+				updateUser,
 			}}>
 			{children}
 		</AuthContext.Provider>

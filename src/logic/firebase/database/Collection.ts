@@ -1,5 +1,6 @@
 import {
 	collection,
+	deleteDoc,
 	doc,
 	DocumentData,
 	DocumentSnapshot,
@@ -25,6 +26,7 @@ export interface Filter {
 
 export class Collection {
 	private _convertOfFirebase(snapshot: DocumentSnapshot<DocumentData>) {
+		if (!snapshot.exists()) return null;
 		const entity: any = { ...snapshot.data(), id: snapshot.id };
 
 		if (!entity) return entity;
@@ -56,7 +58,7 @@ export class Collection {
 		const itemInDatase = await getDoc(docRef);
 
 		if (!itemInDatase.exists()) return false;
-
+		await deleteDoc(docRef);
 		return true;
 	}
 
