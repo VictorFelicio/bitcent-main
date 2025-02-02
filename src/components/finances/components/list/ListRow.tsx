@@ -1,7 +1,7 @@
 import { Transaction } from "@/logic/interface/Transaction";
 import { DataFormat } from "@/logic/utils/DataFormat";
 import { MoneyFormat } from "@/logic/utils/MoneyFormat";
-import { TransactionType } from "./TransactionType";
+import { TransactionType } from "../TransactionType";
 
 interface ListRowProps {
 	transaction: Transaction;

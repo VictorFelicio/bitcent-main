@@ -5,12 +5,12 @@ export interface Transaction {
 	description: string;
 	value: number;
 	date: Date;
-	type: TransactionEnum;
+	type: TransactionEnum | null;
 }
 
 export const emptyTransaction: Transaction = {
 	description: "",
 	value: 0,
 	date: new Date(),
-	type: TransactionEnum.SPENDING,
+	type: null,
 };

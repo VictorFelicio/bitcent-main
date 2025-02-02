@@ -9,8 +9,15 @@ export class DataFormat {
 
 		monthYear(date: Date, language?: string): string {
 			return date?.toLocaleDateString?.(language ?? DataFormat._language, {
-				month: "long",
+				month: "short",
 				year: "numeric",
+			} as Intl.DateTimeFormatOptions);
+		},
+
+		dayMonth(date: Date) {
+			return date?.toLocaleDateString?.(DataFormat._language, {
+				day: "2-digit",
+				month: "short",
 			} as Intl.DateTimeFormatOptions);
 		},
 	};
