@@ -8,11 +8,14 @@ import { NotFoundContent } from "../template/NotFoundContent";
 import { Page } from "../template/Page";
 import Content from "../template/Content";
 import { useTransactions } from "@/data/hooks/useTransactions";
+import InputData from "../template/InputData";
 
 export function Finances() {
 	const {
 		transactions,
 		selectedTransaction,
+		data,
+		setData,
 		setSelectedTransaction,
 		saveTransaction,
 		deleteTransaction,
@@ -22,12 +25,18 @@ export function Finances() {
 		<Page>
 			<Header />
 			<Content className="gap-5">
-				<Button
-					className="bg-blue-500"
-					leftIcon={<IconPlus />}
-					onClick={() => setSelectedTransaction(emptyTransaction)}>
-					Nova Transação
-				</Button>
+				<div className="flex justify-between">
+					<InputData
+						date={data}
+						dataChange={setData}
+					/>
+					<Button
+						className="bg-blue-500"
+						leftIcon={<IconPlus />}
+						onClick={() => setSelectedTransaction(emptyTransaction)}>
+						Nova Transação
+					</Button>
+				</div>
 				{selectedTransaction ? (
 					<FormTransaction
 						transaction={selectedTransaction}

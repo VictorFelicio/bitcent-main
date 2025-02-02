@@ -6,15 +6,16 @@ import { service } from "@/logic/core";
 export function useTransactions() {
 	const [transactions, setTransactions] = useState<Transaction[]>([]);
 	const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
+	const [data, setData] = useState<Date>(new Date());
 	const { user } = useAuth();
 
 	useEffect(() => {
 		getTransactions();
-	}, []);
+	}, [data]);
 
 	async function getTransactions() {
 		if (!user) return;
-		const transactionFirebase = await service.transaction.get(user);
+		const transactionFirebase = await service.transaction.getByMonth(user, data);
 		setTransactions(transactionFirebase);
 	}
 
@@ -35,6 +36,8 @@ export function useTransactions() {
 	return {
 		transactions,
 		selectedTransaction,
+		data,
+		setData,
 		saveTransaction,
 		deleteTransaction,
 		setSelectedTransaction,
