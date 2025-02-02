@@ -7,6 +7,7 @@ export function useTransactions() {
 	const [transactions, setTransactions] = useState<Transaction[]>([]);
 	const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
 	const [data, setData] = useState<Date>(new Date());
+
 	const { user } = useAuth();
 
 	useEffect(() => {

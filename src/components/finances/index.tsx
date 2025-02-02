@@ -11,6 +11,7 @@ import { useTransactions } from "@/data/hooks/useTransactions";
 import InputData from "../template/InputData";
 import { useState } from "react";
 import { GridTransaction } from "./components/grid/GridTransaction";
+import Summary from "./components/summary/Summary";
 
 type ListLayout = "list" | "grid";
 
@@ -49,6 +50,7 @@ export function Finances() {
 		<Page>
 			<Header />
 			<Content className="gap-5">
+				<Summary transactions={transactions} />
 				<div className="flex justify-between">
 					<InputData
 						date={data}
