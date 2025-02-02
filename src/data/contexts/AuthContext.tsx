@@ -6,8 +6,8 @@ interface AuthContextProps {
 	isLoading: boolean;
 	user: User | null;
 	loginGoogle: () => Promise<User | null>;
-	logout: () => void;
-	updateUser: (user: User) => void;
+	logout: () => Promise<void>;
+	updateUser: (user: User) => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextProps>({

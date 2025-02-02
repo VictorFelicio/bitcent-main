@@ -3,8 +3,8 @@
 
 import { useState } from "react";
 
-export function useFormData<G = any>(initialData: G) {
-	const [data, setData] = useState(initialData);
+export function useFormData<G = any>(initialData?: G) {
+	const [data, setData] = useState(initialData ?? ({} as G));
 
 	function handleChangeData(key: keyof G, fn?: Function) {
 		return (value: any) => {
