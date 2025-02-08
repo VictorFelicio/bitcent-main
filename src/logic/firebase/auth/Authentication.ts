@@ -48,8 +48,8 @@ export class Authentication {
 			name: userFirabase.displayName ?? nameFirebase,
 			email: userFirabase.email,
 			imageUrl: userFirabase.photoURL,
-			cpf: "12345678900",
-			phone: "19940028922",
+			cpf: "",
+			phone: "",
 		};
 	}
 }
