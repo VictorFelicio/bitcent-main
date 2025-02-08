@@ -13,7 +13,6 @@ export function useTransactions() {
 	useEffect(() => {
 		getTransactions();
 	}, [data]);
-
 	async function getTransactions() {
 		if (!user) return;
 		const transactionFirebase = await service.transaction.getByMonth(user, data);
